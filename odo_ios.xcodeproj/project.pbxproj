@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		D3193B9A2F4BA1A900883257 /* HotwireNative in Frameworks */ = {isa = PBXBuildFile; productRef = D3193B992F4BA1A900883257 /* HotwireNative */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		D3193B802F4BA14800883257 /* odo_ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = odo_ios.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -36,6 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3193B9A2F4BA1A900883257 /* HotwireNative in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +83,7 @@
 			);
 			name = odo_ios;
 			packageProductDependencies = (
+				D3193B992F4BA1A900883257 /* HotwireNative */,
 			);
 			productName = odo_ios;
 			productReference = D3193B802F4BA14800883257 /* odo_ios.app */;
@@ -107,6 +113,9 @@
 			);
 			mainGroup = D3193B772F4BA14800883257;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				D3193B982F4BA1A900883257 /* XCRemoteSwiftPackageReference "hotwire-native-ios" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = D3193B812F4BA14800883257 /* Products */;
 			projectDirPath = "";
@@ -145,6 +154,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4D57VXZ5XS;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = odo_ios/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -176,6 +186,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4D57VXZ5XS;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = odo_ios/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -341,6 +352,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D3193B982F4BA1A900883257 /* XCRemoteSwiftPackageReference "hotwire-native-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hotwired/hotwire-native-ios";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D3193B992F4BA1A900883257 /* HotwireNative */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D3193B982F4BA1A900883257 /* XCRemoteSwiftPackageReference "hotwire-native-ios" */;
+			productName = HotwireNative;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = D3193B782F4BA14800883257 /* Project object */;
 }
