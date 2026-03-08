@@ -11,7 +11,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		D3193B802F4BA14800883257 /* odo_ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = odo_ios.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D3193B802F4BA14800883257 /* ODO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ODO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -58,7 +58,7 @@
 		D3193B812F4BA14800883257 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D3193B802F4BA14800883257 /* odo_ios.app */,
+				D3193B802F4BA14800883257 /* ODO.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -86,7 +86,7 @@
 				D3193B992F4BA1A900883257 /* HotwireNative */,
 			);
 			productName = odo_ios;
-			productReference = D3193B802F4BA14800883257 /* odo_ios.app */;
+			productReference = D3193B802F4BA14800883257 /* ODO.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */

@@ -12,6 +12,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         Hotwire.registerWebViewPolicyDecisionHandlers([
             GoogleOAuthWebViewPolicyDecisionHandler(),
+            AppleSignInWebViewPolicyDecisionHandler(),
             ReloadWebViewPolicyDecisionHandler(),
             NewWindowWebViewPolicyDecisionHandler(),
             ExternalNavigationWebViewPolicyDecisionHandler(),
