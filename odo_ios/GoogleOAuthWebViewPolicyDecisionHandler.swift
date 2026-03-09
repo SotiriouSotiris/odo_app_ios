@@ -30,16 +30,12 @@ struct GoogleOAuthWebViewPolicyDecisionHandler: WebViewPolicyDecisionHandler {
     func handle(navigationAction: WKNavigationAction,
                 configuration: Navigator.Configuration,
                 navigator: Navigator) -> WebViewPolicyManager.Decision {
-        // Build the OmniAuth URL with native_app flag so the server
-        // knows to redirect back via custom URL scheme after OAuth.
-        // prompt=select_account forces Google to show the account picker
-        // even if the user is already signed in.
+        // Start from the server-side native bootstrap endpoint.
+        // This endpoint can establish any required cookie/session state
+        // before beginning the OAuth redirect chain.
         var components = URLComponents(url: configuration.startLocation, resolvingAgainstBaseURL: false)!
-        components.path = "/users/auth/google_oauth2"
-        components.queryItems = [
-            URLQueryItem(name: "native_app", value: "1"),
-            URLQueryItem(name: "prompt", value: "select_account")
-        ]
+        components.path = "/auth/native/google"
+        components.queryItems = nil
 
         guard let authURL = components.url else { return .allow }
 
