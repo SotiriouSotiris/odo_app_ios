@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		D3193B9A2F4BA1A900883257 /* HotwireNative in Frameworks */ = {isa = PBXBuildFile; productRef = D3193B992F4BA1A900883257 /* HotwireNative */; };
+		D3193BA22F4BA1B000883257 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = D3193BA12F4BA1B000883257 /* GoogleSignIn */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +42,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D3193B9A2F4BA1A900883257 /* HotwireNative in Frameworks */,
+				D3193BA22F4BA1B000883257 /* GoogleSignIn in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -84,6 +86,7 @@
 			name = odo_ios;
 			packageProductDependencies = (
 				D3193B992F4BA1A900883257 /* HotwireNative */,
+				D3193BA12F4BA1B000883257 /* GoogleSignIn */,
 			);
 			productName = odo_ios;
 			productReference = D3193B802F4BA14800883257 /* ODO.app */;
@@ -115,6 +118,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				D3193B982F4BA1A900883257 /* XCRemoteSwiftPackageReference "hotwire-native-ios" */,
+				D3193BA02F4BA1B000883257 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = D3193B812F4BA14800883257 /* Products */;
@@ -169,7 +173,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.my-odo.odo-ios";
+				PRODUCT_BUNDLE_IDENTIFIER = com.myodo.odoios;
 				PRODUCT_NAME = ODO;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
@@ -203,7 +207,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.my-odo.odo-ios";
+				PRODUCT_BUNDLE_IDENTIFIER = com.myodo.odoios;
 				PRODUCT_NAME = ODO;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
@@ -366,6 +370,14 @@
 				minimumVersion = 1.2.2;
 			};
 		};
+		D3193BA02F4BA1B000883257 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/google/GoogleSignIn-iOS";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -373,6 +385,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D3193B982F4BA1A900883257 /* XCRemoteSwiftPackageReference "hotwire-native-ios" */;
 			productName = HotwireNative;
+		};
+		D3193BA12F4BA1B000883257 /* GoogleSignIn */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D3193BA02F4BA1B000883257 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignIn;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

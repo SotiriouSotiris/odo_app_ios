@@ -8,13 +8,23 @@
 	<!-- Override bundle name so ASWebAuthenticationSession shows "ODO" -->
 	<key>CFBundleName</key>
 	<string>ODO</string>
-	<!-- URL scheme for OAuth callback -->
+	<!-- Google Sign-In SDK client ID (replace with your iOS client ID from Google Cloud Console) -->
+	<key>GIDClientID</key>
+	<string>867416683011-fcsejbq9k5l85ue47nivov02pelhlah6.apps.googleusercontent.com</string>
+	<!-- URL schemes for OAuth callbacks -->
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>odo</string>
+			</array>
+		</dict>
+		<dict>
+			<!-- Reversed client ID for Google Sign-In (replace with your actual reversed client ID) -->
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.867416683011-fcsejbq9k5l85ue47nivov02pelhlah6</string>
 			</array>
 		</dict>
 	</array>

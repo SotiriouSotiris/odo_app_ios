@@ -1,3 +1,4 @@
+import GoogleSignIn
 import HotwireNative
 import UIKit
 internal import WebKit
@@ -41,9 +42,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         navigator.start()
     }
 
-    // Handle custom URL scheme callbacks (odo://)
+    // Handle custom URL scheme callbacks (odo:// and Google Sign-In)
     func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
         guard let url = URLContexts.first?.url else { return }
+
+        // Let Google Sign-In SDK handle its callback URLs first
+        if GIDSignIn.sharedInstance.handle(url) { return }
+
         navigator.route(url)
     }
 

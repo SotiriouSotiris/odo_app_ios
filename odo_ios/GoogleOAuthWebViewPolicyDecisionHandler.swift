@@ -2,12 +2,12 @@ import HotwireNative
 import UIKit
 internal import WebKit
 
-/// Intercepts the Google OAuth entry point and hands off to ASWebAuthenticationSession.
+/// Intercepts the Google Sign-In button tap and hands off to native Google Sign-In SDK.
 ///
-/// Matches navigations to `/users/auth/google_oauth2` on the app's own domain
-/// (the OmniAuth request-phase URL). This catches the form POST from the
-/// "Continue with Google" button before the WebView can follow the redirect
-/// to accounts.google.com (which Google would block).
+/// Matches navigations to `/users/auth/google_oauth2` on the app's own domain.
+/// Instead of following the OmniAuth web-based redirect chain, this launches
+/// the native Google Sign-In sheet, which then POSTs the ID token directly
+/// to the server — identical to how Apple Sign-In works.
 struct GoogleOAuthWebViewPolicyDecisionHandler: WebViewPolicyDecisionHandler {
     let name = "google-oauth-policy"
 
@@ -18,7 +18,7 @@ struct GoogleOAuthWebViewPolicyDecisionHandler: WebViewPolicyDecisionHandler {
             return false
         }
 
-        // Match the OmniAuth entry point on our own domain
+        // Match the OmniAuth Google entry point on our own domain
         if host == configHost && url.path.hasPrefix("/users/auth/google_oauth2") {
             // Don't intercept the callback path — only the entry
             return !url.path.contains("/callback")
@@ -30,17 +30,8 @@ struct GoogleOAuthWebViewPolicyDecisionHandler: WebViewPolicyDecisionHandler {
     func handle(navigationAction: WKNavigationAction,
                 configuration: Navigator.Configuration,
                 navigator: Navigator) -> WebViewPolicyManager.Decision {
-        // Start from the server-side native bootstrap endpoint.
-        // This endpoint can establish any required cookie/session state
-        // before beginning the OAuth redirect chain.
-        var components = URLComponents(url: configuration.startLocation, resolvingAgainstBaseURL: false)!
-        components.path = "/auth/native/google"
-        components.queryItems = nil
-
-        guard let authURL = components.url else { return .allow }
-
         Task { @MainActor in
-            OAuthSessionCoordinator.shared.startOAuth(from: authURL, navigator: navigator)
+            GoogleSignInCoordinator.shared.startSignIn(navigator: navigator)
         }
 
         return .cancel
