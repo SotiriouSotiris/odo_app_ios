@@ -40,6 +40,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         navController.additionalSafeAreaInsets = .zero
 
         navigator.start()
+
+        // Re-enable swipe-from-left-edge back gesture AFTER navigator.start().
+        // Must be on the next run-loop tick — Hotwire's Navigator configures its
+        // own navigation controller during start() and can reset the gesture state.
+        DispatchQueue.main.async {
+            navController.interactivePopGestureRecognizer?.isEnabled = true
+            navController.interactivePopGestureRecognizer?.delegate = self
+        }
     }
 
     // Handle custom URL scheme callbacks (odo:// and Google Sign-In)
@@ -57,5 +65,28 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard userActivity.activityType == NSUserActivityTypeBrowsingWeb,
               let url = userActivity.webpageURL else { return }
         navigator.route(url)
+    }
+}
+
+// MARK: - UIGestureRecognizerDelegate
+
+extension SceneDelegate: UIGestureRecognizerDelegate {
+    /// Allow the swipe-back gesture only when there is more than one
+    /// view controller on the stack — prevents a UIKit crash on the root screen.
+    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        guard let navController = navigator.rootViewController as? UINavigationController else {
+            return false
+        }
+        return navController.viewControllers.count > 1
+    }
+
+    /// Give the pop gesture priority over WKWebView's scroll gesture.
+    /// Without this, WKWebView's UIPanGestureRecognizer consumes edge touches
+    /// for scrolling before the UIScreenEdgePanGestureRecognizer can claim them.
+    /// Because the pop gesture is edge-only, it fails instantly for non-edge
+    /// touches, so normal scrolling is unaffected.
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,
+                           shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
     }
 }

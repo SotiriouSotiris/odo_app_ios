@@ -28,6 +28,14 @@
 			</array>
 		</dict>
 	</array>
+	<!-- Privacy usage descriptions required by iOS for media access -->
+	<key>NSCameraUsageDescription</key>
+	<string>ODO needs camera access to let you take a photo for upload.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>ODO needs photo library access to let you choose a photo for upload.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>ODO needs microphone access when recording video for upload.</string>
+
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
