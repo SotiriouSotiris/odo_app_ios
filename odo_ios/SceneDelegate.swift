@@ -8,6 +8,11 @@ let rootURL = URL(string: "https://my-odo.app")!
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
 
+    /// Kept alive for the lifetime of the scene so the WKUserContentController
+    /// always has a valid handler reference.
+    private let fileDownloadHandler = FileDownloadScriptMessageHandler()
+    private let openInAppBrowserHandler = OpenInAppBrowserScriptMessageHandler()
+
     override init() {
         super.init()
 
@@ -19,6 +24,21 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             ExternalNavigationWebViewPolicyDecisionHandler(),
             LinkActivatedWebViewPolicyDecisionHandler()
         ])
+
+        // Register the fileDownload message handler on every WKWebView that
+        // HotwireNative creates, so the web app's Stimulus controller can send
+        // file-download messages to Swift.
+        Hotwire.config.makeCustomWebView = { [fileDownloadHandler, openInAppBrowserHandler] configuration in
+            configuration.userContentController.add(
+                fileDownloadHandler,
+                name: FileDownloadScriptMessageHandler.handlerName
+            )
+            configuration.userContentController.add(
+                openInAppBrowserHandler,
+                name: OpenInAppBrowserScriptMessageHandler.handlerName
+            )
+            return WKWebView(frame: .zero, configuration: configuration)
+        }
     }
 
     private lazy var navigator: Navigator = {
